@@ -36,7 +36,7 @@
 </p>
  
 
-<p disply=flex>DTMoney<p>
+<p disply=flex>IgniteShop<p>
 
 ## Descrição do Projeto
 Nesse projeto, desenvolvi uma aplicação com Next no interesse de aprender sobre a tecnologia. Apesar de serem poucas funcionalidades, precisei abordar conceitos como:
