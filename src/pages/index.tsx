@@ -1,39 +1,32 @@
 import { HomeContainer, Product } from "../styles/pages/home";
-import c1 from "../assets/camisetas-1.png";
-import c2 from "../assets/camisetas-2.png";
-import c3 from "../assets/camisetas-3.png";
+import { stripe } from "../lib/stripe";
+import { GetStaticProps } from "next";
 import Image from "next/image";
+import Stripe from "stripe";
 
-export default function Home() {
+interface IHomeProps {
+  products: {
+    id: string,
+    name: string,
+    imageUrl: string,
+    price: number,
+  }[]
+};
 
-  const camiseta = [{
-    img: c1,
-    name: "Camiseta X",
-    prace: "R$ 79,90",
-  },
-  {
-    img: c2,
-    name: "Camiseta Y",
-    prace: "R$ 79,90",
-  },
-  {
-    img: c3,
-    name: "Camiseta Z",
-    prace: "R$ 79,90",
-  }];
+export default function Home({ products }: IHomeProps) {
 
   return (
     <HomeContainer >
 
-      {camiseta.map((camisa) => {
+      {products.map((product) => {
         return (
-          <Product key={camisa.name}>
+          <Product key={product.id}>
 
-            <Image src={camisa.img} width={520} height={480} alt="" />
+            <Image src={product.imageUrl} width={520} height={480} alt="" />
 
             <footer>
-              <strong>{camisa.name}</strong>
-              <span>{camisa.prace}</span>
+              <strong>{product.name}</strong>
+              <span>{product.price}</span>
             </footer>
 
           </Product>
@@ -41,4 +34,32 @@ export default function Home() {
       })}
     </HomeContainer>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await stripe.products.list({
+    expand: ['data.default_price']
+  });
+
+  const products = response.data.map(product => {
+    const price = product.default_price as Stripe.Price;
+
+    return {
+      id: product.id,
+      name: product.name,
+      imageUrl: product.images[0],
+      price: new Intl.NumberFormat('pt-BR',{
+        style: 'currency',
+        currency: 'BRL',
+      }).format(price.unit_amount / 100),
+    }
+  });
+
+  return {
+    props: {
+      products,
+    },
+    revalidate: 60 * 60 * 2, // 2 Horas
+  };
+
 };
