@@ -42,6 +42,7 @@
 Nesse projeto, desenvolvi uma aplicação com Next no interesse de aprender sobre a tecnologia. Apesar de serem poucas funcionalidades, precisei abordar conceitos como:
 
 - Consumo de API
+- API routes
 - Rotas
 - Next (SSR)
 - Next (SSG)
