@@ -21,7 +21,7 @@ export default function Home({ products }: IHomeProps) {
 
       {products.map((product) => {
         return (
-          <Link key={product.id} href={`/product/${product.id}`}>
+          <Link key={product.id} href={`/product/${product.id}`} prefetch={false}>
           <Product >
 
             <Image src={product.imageUrl} width={520} height={480} alt="" />

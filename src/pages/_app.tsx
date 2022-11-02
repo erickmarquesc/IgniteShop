@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Container>
       <Header>
-        <Link href={'/'}>
+        <Link href={'/'} prefetch={false}>
           <Image src={logoImg} alt='' />
         </Link>
       </Header>
