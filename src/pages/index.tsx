@@ -35,6 +35,7 @@ export default function Home({ products }: IHomeProps) {
           </Link>
         )
       })}
+      
     </HomeContainer>
   );
 };
