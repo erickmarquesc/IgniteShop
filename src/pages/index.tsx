@@ -3,13 +3,14 @@ import { stripe } from "../lib/stripe";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import Stripe from "stripe";
+import Link from "next/link";
 
 interface IHomeProps {
   products: {
     id: string,
     name: string,
     imageUrl: string,
-    price: number,
+    price: string,
   }[]
 };
 
@@ -20,7 +21,8 @@ export default function Home({ products }: IHomeProps) {
 
       {products.map((product) => {
         return (
-          <Product key={product.id}>
+          <Link key={product.id} href={`/product/${product.id}`}>
+          <Product >
 
             <Image src={product.imageUrl} width={520} height={480} alt="" />
 
@@ -30,6 +32,7 @@ export default function Home({ products }: IHomeProps) {
             </footer>
 
           </Product>
+          </Link>
         )
       })}
     </HomeContainer>
