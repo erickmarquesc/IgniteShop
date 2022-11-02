@@ -43,6 +43,8 @@ Nesse projeto, desenvolvi uma aplicação com Next no interesse de aprender sobr
 
 - Consumo de API
 - Rotas
+- Next (SSR)
+- Next (SSG)
     
 Esse projeto foi baseado nas aulas do curso da <a href="https://www.rocketseat.com.br/">Rocketseat🔗</a>.
 ## Getting Started
