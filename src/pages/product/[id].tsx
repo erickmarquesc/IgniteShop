@@ -1,22 +1,32 @@
 import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/products";
 import { GetStaticPaths, GetStaticProps } from "next";
+import { IProductsProps } from "./interface.d";
+import { Spinner } from '@chakra-ui/react';
 import { stripe } from "../../lib/stripe";
+import { useRouter } from "next/router";
 import Image from "next/future/image";
 import Stripe from "stripe";
-import { useRouter } from "next/router";
-import { Spinner } from '@chakra-ui/react';
-
-interface IProductsProps {
-  product: {
-    id: string;
-    name: string;
-    imageUrl: string;
-    price: string;
-    description: string;
-  }
-};
+import axios from "axios";
+import { useState } from "react";
 
 export default function Products({ product }: IProductsProps) {
+  const [isCreatingCheckotSession, setIsCreatingCheckotSession] = useState(false);
+  async function handleBuyProduct() {
+    try {
+      setIsCreatingCheckotSession(true)
+      const response = await axios.post('/api/checkout', {
+        priceId: product.defaultPriceId,
+      });
+
+      const { checkoutUrl } = response.data;
+
+      window.location.href = checkoutUrl;
+    } catch (err) {
+      // Conectar com uma ferrementa de observabilidade (Datadog / Sentry)
+      setIsCreatingCheckotSession(false)
+      alert('Falha ao redirecionar ao checkout');
+    };
+  };
 
   const { isFallback } = useRouter();
 
@@ -29,13 +39,13 @@ export default function Products({ product }: IProductsProps) {
 
         <ProductDetails>
           <Spinner size="md" width={50} height={50} />
-          <button>
+          <button onClick={handleBuyProduct}>
             Comprar agora
           </button>
         </ProductDetails>
       </ProductContainer>
     );
-  }
+  };
 
   return (
     <ProductContainer>
@@ -47,9 +57,9 @@ export default function Products({ product }: IProductsProps) {
         <h1>{product.name}</h1>
         <span>{product.price}</span>
         <p>{product.description}</p>
-        <button>
-          Comprar agora
-        </button>
+        <button disabled={isCreatingCheckotSession} onClick={handleBuyProduct}>
+            Comprar agora
+          </button>
       </ProductDetails>
     </ProductContainer>
   );
@@ -64,7 +74,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       { params: { id: 'prod_Mg9JRhjN2Xx4U2' } }
     ],
     fallback: true,
-  }
+  };
 };
 
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ params }) => {
@@ -83,6 +93,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
         name: product.name,
         imageUrl: product.images[0],
         description: product.description,
+        defaultPriceId: price.id,
         price: new Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL',
@@ -90,5 +101,5 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
       }
     },
     revalidate: 60 * 60 * 1, // 1 hora
-  }
-}
+  };
+};
