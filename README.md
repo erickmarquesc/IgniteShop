@@ -41,7 +41,7 @@
 ## Descrição do Projeto
 Nesse projeto, desenvolvi uma aplicação com Next no interesse de aprender sobre a tecnologia. Apesar de serem poucas funcionalidades, precisei abordar conceitos como:
 
-- Consumo de API
+- Consumo de API Stripe
 - API routes
 - Rotas
 - Next (SSR)
@@ -56,4 +56,11 @@ First, run the development server:
 npm run dev
 # or
 yarn dev
+```
+## Para testes
+Para testar o pagamento com sucesso basta indicar:
+```
+cartão 4242 4242 4242 4242
+data maior que o dia atual
+CVC 123
 ```
