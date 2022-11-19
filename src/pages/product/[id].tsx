@@ -1,16 +1,19 @@
 import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/products";
+import { IProductsProps } from "../interfaces/IProducts.d";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { IProductsProps } from "./interface.d";
 import { Spinner } from '@chakra-ui/react';
 import { stripe } from "../../lib/stripe";
 import { useRouter } from "next/router";
 import Image from "next/future/image";
+import { useState } from "react";
+import Head from "next/head";
 import Stripe from "stripe";
 import axios from "axios";
-import { useState } from "react";
 
 export default function Products({ product }: IProductsProps) {
+
   const [isCreatingCheckotSession, setIsCreatingCheckotSession] = useState(false);
+
   async function handleBuyProduct() {
     try {
       setIsCreatingCheckotSession(true)
@@ -32,36 +35,49 @@ export default function Products({ product }: IProductsProps) {
 
   if (isFallback) { // loading
     return (
-      <ProductContainer>
-        <ImageContainer>
-          <Spinner size="md" width={100} height={100} />
-        </ImageContainer>
+      <>
+        <Head>
+          <title>Produto | IgniteShop</title>
+        </Head>
+        <ProductContainer>
+          <ImageContainer>
+            <Spinner size="md" width={100} height={100} />
+          </ImageContainer>
 
-        <ProductDetails>
-          <Spinner size="md" width={50} height={50} />
-          <button onClick={handleBuyProduct}>
-            Comprar agora
-          </button>
-        </ProductDetails>
-      </ProductContainer>
+          <ProductDetails>
+            <Spinner size="md" width={50} height={50} />
+            <button onClick={handleBuyProduct}>
+              Comprar agora
+            </button>
+          </ProductDetails>
+        </ProductContainer>
+      </>
     );
   };
 
   return (
-    <ProductContainer>
-      <ImageContainer>
-        <Image src={product.imageUrl} width={520} height={480} alt="" />
-      </ImageContainer>
+    <>
+      <Head>
+        <title>{product.name} | IgniteShop</title>
+      </Head>
+      <ProductContainer>
+        <ImageContainer>
+          <Image src={product.imageUrl} width={520} height={480} alt="" />
+        </ImageContainer>
 
-      <ProductDetails>
-        <h1>{product.name}</h1>
-        <span>{product.price}</span>
-        <p>{product.description}</p>
-        <button disabled={isCreatingCheckotSession} onClick={handleBuyProduct}>
+        <ProductDetails>
+          <h1>{product.name}</h1>
+          <span>{product.price}</span>
+          <p>{product.description}</p>
+          <button
+            disabled={isCreatingCheckotSession}
+            onClick={handleBuyProduct}
+          >
             Comprar agora
           </button>
-      </ProductDetails>
-    </ProductContainer>
+        </ProductDetails>
+      </ProductContainer>
+    </>
   );
 };
 

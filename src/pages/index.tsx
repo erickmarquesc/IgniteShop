@@ -1,42 +1,40 @@
 import { HomeContainer, Product } from "../styles/pages/home";
+import { IHomeProps } from "./interfaces/IHome.d";
 import { stripe } from "../lib/stripe";
 import { GetStaticProps } from "next";
 import Image from "next/image";
-import Stripe from "stripe";
 import Link from "next/link";
-
-interface IHomeProps {
-  products: {
-    id: string,
-    name: string,
-    imageUrl: string,
-    price: string,
-  }[]
-};
+import Head from "next/head";
+import Stripe from "stripe";
 
 export default function Home({ products }: IHomeProps) {
 
   return (
-    <HomeContainer >
+    <>
+      <Head>
+        <title>Home | IgniteShop</title>
+      </Head>
+      <HomeContainer >
 
-      {products.map((product) => {
-        return (
-          <Link key={product.id} href={`/product/${product.id}`} prefetch={false}>
-          <Product >
+        {products.map((product) => {
+          return (
+            <Link key={product.id} href={`/product/${product.id}`} prefetch={false}>
+              <Product >
 
-            <Image src={product.imageUrl} width={520} height={480} alt="" />
+                <Image src={product.imageUrl} width={520} height={480} alt="" />
 
-            <footer>
-              <strong>{product.name}</strong>
-              <span>{product.price}</span>
-            </footer>
+                <footer>
+                  <strong>{product.name}</strong>
+                  <span>{product.price}</span>
+                </footer>
 
-          </Product>
-          </Link>
-        )
-      })}
-      
-    </HomeContainer>
+              </Product>
+            </Link>
+          )
+        })}
+
+      </HomeContainer>
+    </>
   );
 };
 
@@ -52,7 +50,7 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: new Intl.NumberFormat('pt-BR',{
+      price: new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',
       }).format(price.unit_amount / 100),
@@ -65,5 +63,4 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     revalidate: 60 * 60 * 2, // 2 Horas
   };
-
 };

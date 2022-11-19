@@ -25,11 +25,11 @@ export const Product = styled('a', {
   },
 
   footer: {
-    position: 'absolute',
-    bottom: '0.25rem',
     left: '0.25rem',
-    right: '0.25rem',
     padding: '2rem',
+    right: '0.25rem',
+    bottom: '0.25rem',
+    position: 'absolute',
 
     borderRadius: 6,
 
@@ -38,8 +38,8 @@ export const Product = styled('a', {
     justifyContent: 'space-between',
     backgroundColor: 'rgba(0,0,0,0.6)',
 
-    transform: 'trabslateY(110%)',
     opacity: 0,
+    transform: 'trabslateY(110%)',
     transition: 'all 0.2s ease-in-out',
 
     strong:{
@@ -57,6 +57,6 @@ export const Product = styled('a', {
     footer:{
       transform: 'translateY(0%)',
       opacity: 1,
-    }
-  }
+    },
+  },
 });

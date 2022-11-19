@@ -15,6 +15,6 @@ export const Header = styled('header',{
   padding: "2rem 0",
 
   img:{
-    cursor: "pointer"
-  }
+    cursor: "pointer",
+  },
 });
