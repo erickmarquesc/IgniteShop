@@ -1,44 +1,23 @@
+<h1 align="center">IgniteShop</h1>
 <p align="center">
- <img heigth="150" Width="150" style="max-width:100%" src="https://raw.githubusercontent.com/MicaelliMedeiros/micaellimedeiros/master/image/computer-illustration.png" align="center" alt="GitHub Readme Stats" />
- <h2 align="center">Erick Marques Cabral</h2>
- <p align="center">
-  <img 
-       heigth="30"
-       Width="40"
-       style="max-width:100%"
-       src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">
-  <img 
-       heigth="30" 
-       Width="40"
-       style="max-width:100%"
-       src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">
-  <img 
-       heigth="30" 
-       Width="40"
-       style="max-width:100%"
-       src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
-  <img 
-       heigth="30" 
-       Width="40"
-       style="max-width:100%"
-       src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg">
-  <img 
-       heigth="30" 
-       Width="40"
-       style="max-width:100%"
-       src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg">
-  <img 
-       heigth="30" 
-       Width="40"
-       style="max-width:100%"
-       src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
-  </p>
+Erick Marques Cabral
 </p>
- 
+<p align="center">
+Esse projeto exclusivo e gratuito, promovido pela Rocketseat para ensino de tecnologias WEB. <br/>
+<a href="https://www.rocketseat.com.br/">Rocketseat🔗</a>.
+</p> <br/>
 
-<p disply=flex>IgniteShop<p>
+<p align="center">
+  <a href="#-descrição">Descrição do Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-layout">Layout</a> 
+</p>
 
-## Descrição do Projeto
+<p align="center">
+  <img alt="projeto DevLinks" src=".github/preview.svg" width="100%">
+</p>
+
+## 💻 Descrição
 Nesse projeto, desenvolvi uma aplicação com Next no interesse de aprender sobre a tecnologia. Apesar de serem poucas funcionalidades, precisei abordar conceitos como:
 
 - Consumo de API Stripe
@@ -46,8 +25,17 @@ Nesse projeto, desenvolvi uma aplicação com Next no interesse de aprender sobr
 - Rotas
 - Next (SSR)
 - Next (SSG)
+
+## 🚀 Tecnologias
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- HTML e CSS
+- JavaScript
+- Git e Github
+- Figma
+- Vite
+- TypeScript
     
-Esse projeto foi baseado nas aulas do curso da <a href="https://www.rocketseat.com.br/">Rocketseat🔗</a>.
 ## Getting Started
 
 First, run the development server:
@@ -64,3 +52,8 @@ cartão 4242 4242 4242 4242
 data maior que o dia atual
 CVC 123
 ```
+
+## 🔖 Layout
+
+Você pode visualizar o layout do projeto através [DESSE LINK](https://www.figma.com/file/K13pg9SmHVIkYrV9uejShS/Ignite-Shop?node-id=11%3A599&t=x4zU1Ph4djBqhXBy-1). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
+
